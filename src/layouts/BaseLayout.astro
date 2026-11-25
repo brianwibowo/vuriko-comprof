@@ -12,7 +12,7 @@ const site = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://ex
 const canonical = Astro.url.pathname === '/404.html' ? `${site}/404.html` : `${site}${Astro.url.pathname}`;
 ---
 <!doctype html>
-<html lang="en" data-bs-theme={theme}>
+<html lang="id" data-bs-theme={theme}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

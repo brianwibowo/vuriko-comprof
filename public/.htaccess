@@ -7,6 +7,10 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    # Allow AutoSSL / ACME challenge, block hidden files & folders (e.g. .git)
+    RewriteRule ^\.well-known/ - [L]
+    RewriteRule (^|/)\. - [F,L]
+
     # Force HTTPS (enable when SSL is active on cPanel)
     RewriteCond %{HTTPS} !=on
     RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

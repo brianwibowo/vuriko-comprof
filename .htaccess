@@ -1,0 +1,26 @@
+# Apache / LiteSpeed config for cPanel shared hosting
+Options -Indexes
+DirectoryIndex index.html
+
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Allow AutoSSL / ACME challenge, block hidden files & folders (e.g. .git)
+    RewriteRule ^\.well-known/ - [L]
+    RewriteRule (^|/)\. - [F,L]
+
+    # Force HTTPS (enable when SSL is active on cPanel)
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Redirect legacy single-segment .html URLs to clean URLs (excluding index.html and 404.html)
+    RewriteCond %{REQUEST_URI} !^/(index|404)\.html$
+    RewriteRule ^([^/]+)\.html$ /$1/ [R=301,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

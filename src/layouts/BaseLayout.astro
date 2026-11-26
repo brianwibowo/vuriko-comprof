@@ -8,7 +8,7 @@ interface Props {
   bodyClass?: string;
 }
 const { title, description, styles, scripts, theme, bodyClass } = Astro.props;
-const site = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://example.com';
+const site = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://vuriko.id';
 const canonical = Astro.url.pathname === '/404.html' ? `${site}/404.html` : `${site}${Astro.url.pathname}`;
 ---
 <!doctype html>

@@ -20,12 +20,13 @@ npm run preview
 
 ## Configuration
 
-Set the `SITE_URL` environment variable to configure the canonical site URL used by Astro (defaults to `https://example.com`):
+Set the `SITE_URL` environment variable to configure the canonical site URL used by Astro (defaults to `https://vuriko.id`):
 
 ```sh
-SITE_URL=https://yourdomain.com npm run build
+SITE_URL=https://vuriko.id npm run build
 ```
 
-## Deployment (Docker / Nginx)
+## Deployment (cPanel Shared Hosting & Docker / Nginx)
 
-The repository includes a `Dockerfile` and `nginx.conf`. Nginx serves the generated static site from `dist/`, redirects legacy `.html` URLs to clean URLs, and serves the custom `404.html` page.
+- **cPanel / Shared Hosting:** Run `npm run build`, then upload the contents of `dist/` (including `.htaccess`) to `public_html/`.
+- **Docker / Nginx:** The repository includes a `Dockerfile` and `nginx.conf`. Nginx serves the static build from `dist/`, redirects legacy `.html` URLs to clean URLs, and serves the custom `404.html` page.
